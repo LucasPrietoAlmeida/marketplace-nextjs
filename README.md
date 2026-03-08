@@ -1,36 +1,108 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Marketplace Next.js
 
-## Getting Started
+## Descripción
 
-First, run the development server:
+Este proyecto es un **Marketplace de anuncios** desarrollado con **Next.js**, **TailwindCSS** y **Prisma**.  
+Permite a los usuarios crear, listar y gestionar anuncios de productos de manera sencilla y rápida.
 
+El objetivo principal del proyecto fue **aprender y aplicar buenas prácticas en un proyecto Fullstack** usando tecnologías modernas de React y Node.js.
+
+---
+
+## Tecnologías
+
+- **Frontend:** Next.js (App Router), React, TailwindCSS  
+- **Backend:** Next.js API Routes, Prisma ORM, PostgreSQL  
+- **Testing:** Vitest  
+- **Autenticación:** Gestión de usuarios con Prisma (login simple)  
+- **Herramientas:** Git, npm  
+
+---
+
+## Instalación
+
+1. Clonar el repositorio:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone [URL_DEL_REPOSITORIO]
+cd marketplace-nextjs
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Instalar dependencias:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Configurar variables de entorno(.env):
+```env
+DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE"
+NEXT_PUBLIC_ENV=development
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Generar Prisma Client:
+```bash
+npx prisma db push
+```
 
-## Learn More
+5. Iniciar la aplicación en modo desarrollo:
+```bash
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+La aplicación estará disponible en http://localhost:3000.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Testing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Se incluyen tests unitarios para las acciones del servidor (Server Actions) usando Vitest.
 
-## Deploy on Vercel
+Ejecutar los tests:
+```bash
+npm run test
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Estructura del proyecto
+
+/src
+  /app            # Páginas y App Router de Next.js
+  /components     # Componentes React reutilizables
+  /lib            # Librerías y acciones del servidor
+/tests            # Tests unitarios con Vitest
+/prisma           # Esquema de base de datos Prisma
+/public           # Recursos estáticos
+
+## Seed de base de datos
+El proyecto incluye un script para poblar la base de datos con datos iniciales.
+
+Archivo:
+```
+prisma/seed.ts
+```
+Este script crea:
+
+- usuarios de prueba
+
+- anuncios iniciales
+
+Ejecutarlo con:
+```bash
+npx tsx prisma/seed.ts
+```
+
+## Hash de contraseñas
+
+El proyecto incluye un script para generar contraseñas seguras usando hashing.
+
+Archivo:
+```
+scripts/hashPasswords.ts
+```
+Este script permite:
+
+- generar contraseñas hasheadas
+
+- usarlas para seed o creación manual de usuarios
+
+Ejecutarlo con:
+```bash
+npx tsx scripts/hashPasswords.ts
+```
