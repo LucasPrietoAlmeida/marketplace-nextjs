@@ -3,17 +3,20 @@ import AdCard, { AdType } from "@/components/AdCard";
 import { prisma } from "@/lib/prisma";
 
 interface PageProps {
-  searchParams?: { query?: string };
+  searchParams: Promise<{ query?: string }>;
 }
 
 export default async function HomePage({ searchParams }: PageProps) {
-  const query = searchParams?.query ?? "";
+  const resolvedSearchParams = await searchParams;
+  const query = resolvedSearchParams?.query ?? "";
 
   let ads: AdType[] = [];
 
   try {
     const rawAds = await prisma.ad.findMany({
-      where: { title: { contains: query, mode: "insensitive" } },
+      where: {
+        title: { contains: query, mode: "insensitive" },
+      },
       orderBy: { createdAt: "desc" },
       take: 6,
     });
