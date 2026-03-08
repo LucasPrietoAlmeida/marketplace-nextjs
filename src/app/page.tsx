@@ -8,7 +8,10 @@ interface PageProps {
 type AdType = Awaited<ReturnType<typeof prisma.ad.findMany>>[number];
 
 export default async function HomePage({ searchParams }: PageProps) {
-  const query = searchParams?.query ?? "";
+  const params = await searchParams;
+  const query = params?.query ?? "";
+
+  await new Promise((resolve) => setTimeout(resolve, 1000));
 
   let ads: AdType[] = [];
   try {
