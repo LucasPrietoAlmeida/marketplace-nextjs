@@ -14,10 +14,10 @@ export default async function HomePage() {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Marketplace</h1>
+      <h1 className="text-2xl font-bold mb-4">Listado de productos</h1>
       {ads.map(ad => (
         <Link key={ad.id} href={`/ads/${ad.id}`}>
-          <div className="border p-4 mb-2 hover:bg-gray-100">
+          <div className="border p-4 mb-2 hover:bg-gray-100 rounded-2xl">
             <h2 className="font-semibold">{ad.title}</h2>
             <p>{ad.price} €</p>
           </div>

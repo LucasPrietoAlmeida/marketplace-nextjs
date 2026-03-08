@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "tailwindcss/preflight";
 @import "tailwindcss/utilities";
 
 :root {
@@ -21,7 +20,7 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
   margin: 0;
-  padding: 10em;
+  padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
