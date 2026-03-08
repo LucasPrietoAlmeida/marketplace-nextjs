@@ -1,21 +1,29 @@
-import React from "react";
-
-interface AdCardProps {
+export type AdType = {
+    id: string;
     title: string;
     description: string;
     price: number;
     tags: string[];
+    createdAt: string; 
+    userId: string;
+};
+
+interface AdCardProps {
+    ad: AdType;
 }
 
-export default function AdCard({ title, description, price, tags }: AdCardProps) {
+export default function AdCard({ ad }: AdCardProps) {
     return (
-        <div className="border rounded p-4 shadow hover:shadow-lg transition">
-        <h2 className="text-xl font-bold">{title}</h2>
-        <p className="text-gray-700">{description}</p>
-        <p className="text-green-600 font-semibold">${price}</p>
-        <div className="flex gap-2 mt-2">
-            {tags.map((tag) => (
-            <span key={tag} className="bg-gray-200 px-2 py-1 rounded text-sm">
+        <div className="border rounded-lg p-4 bg-white dark:bg-gray-900 space-y-2">
+        <h2 className="text-lg font-bold">{ad.title}</h2>
+        <p className="text-gray-600 dark:text-gray-300">{ad.description}</p>
+        <p className="font-semibold">{ad.price} €</p>
+        <div className="flex flex-wrap gap-1">
+            {ad.tags.map((tag) => (
+            <span
+                key={tag}
+                className="text-xs bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded"
+            >
                 {tag}
             </span>
             ))}
