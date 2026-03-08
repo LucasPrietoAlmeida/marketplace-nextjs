@@ -16,10 +16,13 @@ export default function LoginPage() {
 
         if (result.error) {
         setError(result.error);
-        } else {
-        setError("");
-        router.push(`/?userId=${result.userId}`);
+        return;
         }
+
+        document.cookie = `userId=${result.userId}; path=/; max-age=${60 * 60 * 24}`;
+
+        setError("");
+        router.push("/ads/create");
     };
 
     return (

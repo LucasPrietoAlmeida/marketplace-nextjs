@@ -17,13 +17,12 @@ export default function CreateAdPage({ userId }: CreateAdFormProps) {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-
         const result = await createAd(
         {
             title,
             description,
             price: parseFloat(price),
-            tags: tags.split(",").map((t) => t.trim()).filter(Boolean),
+            tags: tags.split(",").map(t => t.trim()).filter(Boolean),
         },
         userId
         );
