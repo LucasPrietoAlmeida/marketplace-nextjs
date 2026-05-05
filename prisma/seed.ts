@@ -1,8 +1,12 @@
-import { prisma } from "@/lib/prisma";
+import { prisma } from "./prismaClient";
 
 async function main() {
-    await prisma.user.create({
-        data: {
+    await prisma.user.upsert({
+        where: {
+        email: "lucas@test.com",
+        },
+        update: {},
+        create: {
         email: "lucas@test.com",
         password: "123456",
         name: "Lucas",
@@ -32,7 +36,7 @@ async function main() {
     });
 
     console.log("Seed ejecutado correctamente");
-    }
+}
 
 main()
     .catch((e) => {
